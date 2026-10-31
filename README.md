@@ -113,4 +113,4 @@ Colours are CSS variables set on `.landing`. Dark mode is applied with `data-the
 
 ## Author
 
-Made with love by **Kartik Yadav**.
+Made with love by **Payal Yadav**.
