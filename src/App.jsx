@@ -2,8 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-// Backend ka base URL. Apne server ke hisaab se badal lo.
-const API = "http://localhost:8000";
+const API = "https://thali-backend-8kz7.onrender.com/";
 
 /* ---------------------------------- auth helpers ---------------------------------- */
 

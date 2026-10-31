@@ -35,10 +35,8 @@ This is the **React + Vite** frontend. It talks to the Thali Node.js / Express /
 ### Install and run
 
 ```bash
-# install dependencies
 npm install
 
-# start the dev server
 npm run dev
 ```
 
@@ -47,8 +45,8 @@ Open the URL shown in the terminal, usually `http://localhost:5173`.
 ### Other scripts
 
 ```bash
-npm run build     # production build in /dist
-npm run preview   # preview the production build locally
+npm run build
+npm run preview
 ```
 
 ## Configuration
