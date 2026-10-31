@@ -4,6 +4,16 @@ Thali is a recipe sharing app. Browse home-cooked recipes from other people, sav
 
 This is the **React + Vite** frontend. It talks to the Thali Node.js / Express / MongoDB backend.
 
+## Live demo
+
+| What         | Link                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| Frontend     | [thali-frontend-chi.vercel.app](https://thali-frontend-chi.vercel.app/)                      |
+| Backend API  | `https://thali-backend-8kz7.onrender.com`                                                    |
+| Swagger docs | [thali-backend-8kz7.onrender.com/api-docs](https://thali-backend-8kz7.onrender.com/api-docs) |
+
+> The backend may take a few seconds to wake up if it has been idle. If you only see sample recipes at first, wait a moment and refresh.
+
 ## Features
 
 - **Browse recipes** with search by dish name or ingredient
@@ -13,7 +23,7 @@ This is the **React + Vite** frontend. It talks to the Thali Node.js / Express /
 - **Sign up and log in** with JWT, password strength meter, show/hide password
 - **Auto logout** when the token expires or the server rejects it, and sync across browser tabs
 - **Add, edit and delete your own recipes**, with an image upload (JPG, PNG, WebP, up to 5 MB)
-- **Light and dark theme**, remembered between visits
+- **Light and dark theme** with a sun / moon icon button, remembered between visits
 - **Interactive hero card** where you can change servings and tick ingredients
 - **Responsive layout** with a hamburger menu on smaller screens
 - **Sample recipes** shown automatically if the backend is empty or not running
@@ -24,13 +34,14 @@ This is the **React + Vite** frontend. It talks to the Thali Node.js / Express /
 - [Vite](https://vite.dev/)
 - [Axios](https://axios-http.com/)
 - Plain CSS (no UI library)
+- Deployed on [Vercel](https://vercel.com/)
 
 ## Getting started
 
 ### Prerequisites
 
 - Node.js 18 or newer
-- The Thali backend running (see the backend README)
+- The Thali backend, either running locally or the live one (see the backend README)
 
 ### Install and run
 
@@ -45,21 +56,27 @@ Open the URL shown in the terminal, usually `http://localhost:5173`.
 ### Other scripts
 
 ```bash
-npm run build
-npm run preview
+npm run build     # production build in /dist
+npm run preview   # preview the production build locally
 ```
 
 ## Configuration
 
-The backend URL is set at the top of `src/App.jsx`:
+The backend URL is set at the top of `src/App.jsx`.
+
+**Local backend:**
 
 ```js
 const API = "http://localhost:8000";
 ```
 
-Change it if your backend runs on a different host or port.
+**Live backend:**
 
-Make sure the backend uses the same port. In the backend `.env`:
+```js
+const API = "https://thali-backend-8kz7.onrender.com";
+```
+
+Use the local one while developing with your own backend, and the live one for the deployed frontend. If you use a local backend, make sure it runs on the same port. In the backend `.env`:
 
 ```
 PORT=8000
@@ -80,7 +97,8 @@ PORT=8000
 
 Recipe images are loaded from `{API}/images/{coverImage}`.
 
-The full API docs are available from the backend at `/api-docs` (Swagger).
+The full API docs are available from the backend at `/api-docs` (Swagger):
+[https://thali-backend-8kz7.onrender.com/api-docs](https://thali-backend-8kz7.onrender.com/api-docs)
 
 ## Project structure
 
@@ -102,10 +120,17 @@ src/
 
 Colours are CSS variables set on `.landing`. Dark mode is applied with `data-theme="dark"` and is saved in `localStorage` under the `theme` key.
 
+## Deployment (Vercel)
+
+1. Push the frontend to GitHub.
+2. Import the repository in Vercel. It detects Vite automatically.
+3. Build command: `npm run build`, output directory: `dist`.
+4. Make sure `API` in `src/App.jsx` points to the live backend before deploying.
+
 ## Troubleshooting
 
-- **"Cannot reach the server"**: the backend is not running, or `API` in `App.jsx` points to the wrong port.
-- **Sample recipes are showing**: no recipes came back from the backend. Check the backend is running and has data.
+- **"Cannot reach the server"**: the backend is not running, or `API` in `App.jsx` points to the wrong URL or port.
+- **Sample recipes are showing**: no recipes came back from the backend. If you use the live backend, it may still be waking up, so wait a few seconds and refresh.
 - **Images not showing**: check that the backend serves the `public` folder and that `API` is correct.
 - **CORS errors**: make sure the backend has `cors()` enabled.
 
